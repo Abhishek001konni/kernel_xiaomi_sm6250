@@ -5,7 +5,7 @@
 ## Copy this script inside the kernel directory
 KERNEL_DEFCONFIG=cust_defconfig
 ANYKERNEL3_DIR=$PWD/AnyKernel3/
-FINAL_KERNEL_ZIP=Etherious-miatoll-$(date '+%Y%m%d').zip
+FINAL_KERNEL_ZIP=Forza-miatoll-$(date '+%Y%m%d').zip
 export PATH="$HOME/proton/bin:$PATH"
 export ARCH=arm64
 export SUBARCH=arm64
