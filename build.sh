@@ -54,6 +54,9 @@ GCC_OPT=1
 elif [ "$1" = "--azure" ];
 then
 COMPILER=azure
+elif [ "$1" = "--atomx" ];
+then
+COMPILER=atomx
 elif [ "$1" = "--proton" ];
 then
 COMPILER=proton
@@ -91,7 +94,13 @@ function cloneTC() {
 	git clone --depth=1  https://gitlab.com/ImSpiDy/azure-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
 	
-	elif [ $COMPILER = "neutron" ];
+        elif [ $COMPILER = "atomx" ];
+        then
+        post_msg " Cloning Atomx Clang ToolChain "
+        git clone --depth=1  https://gitlab.com/ElectroPerf/atom-x-clang.git clang
+        PATH="${KERNEL_DIR}/clang/bin:$PATH"
+	
+        elif [ $COMPILER = "neutron" ];
 	then
 	post_msg " Cloning Neutron Clang ToolChain "
 	git clone --depth=1  https://github.com/Neutron-Clang/neutron-toolchain.git clang
