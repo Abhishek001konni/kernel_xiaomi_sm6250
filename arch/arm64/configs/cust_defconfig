@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 4.14.269 Kernel Configuration
+# Linux/arm64 4.14.272 Kernel Configuration
 #
 CONFIG_ARM64=y
 CONFIG_64BIT=y
@@ -2318,6 +2318,7 @@ CONFIG_DIAG_OVER_USB=y
 CONFIG_MSM_FASTCVPD=y
 CONFIG_MSM_ADSPRPC=y
 # CONFIG_MSM_RDBG is not set
+CONFIG_SRANDOM=y
 
 #
 # I2C support
