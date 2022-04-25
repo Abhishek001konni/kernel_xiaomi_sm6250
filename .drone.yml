@@ -4,11 +4,11 @@ kind: pipeline
 name : Forza
 steps:
  - name: SM6250
-   image: atomxorg/ubuntu:latest
+   image: panchajanya1999/archlinux:latest
    environment:
      token:
        from_secret: token
      chat_id:
        from_secret: chat_id
    commands:
-      - /noclone3 bash build.sh
+      -  bash build.sh
