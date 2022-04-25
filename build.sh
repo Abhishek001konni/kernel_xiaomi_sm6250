@@ -47,84 +47,49 @@ FINAL_ZIP=${ZIPNAME}-kernel-${DEVICE}-${TANGGAL}.zip
 ##----------------------------------------------------------##
 # Specify compiler.
 
-if [ "$1" = "--eva" ];
-then
-COMPILER=eva
-GCC_OPT=1
-elif [ "$1" = "--azure" ];
-then
 COMPILER=azure
-elif [ "$1" = "--atomx" ];
-then
-COMPILER=atomx
-elif [ "$1" = "--proton" ];
-then
-COMPILER=proton
-elif [ "$1" = "--aosp" ];
-then
-COMPILER=aosp
-elif [ "$1" = "--neutron" ];
-then
-COMPILER=neutron
-fi
 
 ##----------------------------------------------------------##
 # Specify Linker
-if [ "$2" = "--lld" ];
-then
 LINKER=ld.lld
-elif [ "$2" = "--gold" ];
-then
-LINKER=ld.gold
-elif [ "$2" = "--bfd" ];
-then
-LINKER=ld.bfd
-elif [ "$2" = "--ld" ];
-then
-LINKER=ld
-fi
+
+##----------------------------------------------------------##
 
 ##----------------------------------------------------------##
 # Clone ToolChain
 function cloneTC() {
-	
-	if [ $COMPILER = "azure" ];
+
+	if [ $COMPILER = "atomx" ];
 	then
-	post_msg " Cloning Azure Clang ToolChain "
-	git clone --depth=1  https://gitlab.com/ImSpiDy/azure-clang.git clang
+	git clone --depth=1 https://gitlab.com/ElectroPerf/atom-x-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
-	
-        elif [ $COMPILER = "atomx" ];
-        then
-        post_msg " Cloning Atomx Clang ToolChain "
-        git clone --depth=1  https://gitlab.com/ElectroPerf/atom-x-clang.git clang
-        PATH="${KERNEL_DIR}/clang/bin:$PATH"
 
         elif [ $COMPILER = "neutron" ];
+        then
+        git clone --depth=1 https://gitlab.com/dakkshesh07/neutron-clang.git clang
+        PATH="${KERNEL_DIR}/clang/bin:$PATH"
+
+	elif [ $COMPILER = "azure" ];
 	then
-	post_msg " Cloning Neutron Clang ToolChain "
-	git clone --depth=1  https://github.com/Neutron-Clang/neutron-toolchain.git clang
+	git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
-	
+
 	elif [ $COMPILER = "proton" ];
 	then
-	post_msg " Cloning Proton Clang ToolChain "
-	git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
+	git clone --depth=1 https://github.com/kdrag0n/proton-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
-	
+
 	elif [ $COMPILER = "eva" ];
 	then
-	post_msg " Cloning Eva GCC ToolChain "
 	git clone --depth=1 https://github.com/mvaisakh/gcc-arm64.git -b gcc-new gcc64
 	git clone --depth=1 https://github.com/mvaisakh/gcc-arm.git -b gcc-new gcc32
 	PATH=$KERNEL_DIR/gcc64/bin/:$KERNEL_DIR/gcc32/bin/:/usr/bin:$PATH
-	
+
 	elif [ $COMPILER = "aosp" ];
 	then
-	post_msg " Cloning Aosp Clang 14.0.1 ToolChain "
         mkdir aosp-clang
         cd aosp-clang || exit
-	wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r437112b.tar.gz
+	wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r450784b.tar.gz
         tar -xf clang*
         cd .. || exit
 	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc
