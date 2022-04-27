@@ -71,7 +71,7 @@ function cloneTC() {
 
 	elif [ $COMPILER = "azure" ];
 	then
-	git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang.git clang
+	git clone --depth=1 https://gitlab.com/ImSpiDy/azure-clang.git clang
 	PATH="${KERNEL_DIR}/clang/bin:$PATH"
 
 	elif [ $COMPILER = "proton" ];
